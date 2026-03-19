@@ -6,6 +6,7 @@ import extract from "extract-zip";
 import fs from "fs";
 import { execSync, spawn } from "child_process";
 import axios from "axios";
+import { getPaths } from "../utils/path.js";
 
 export const deployRouter = Router();
 
@@ -47,12 +48,12 @@ deployRouter.post("/", upload.single("code"), async (req, res) => {
 async function deployFunction(zipPath: string) {
   const functionId = crypto.randomBytes(8).toString("hex");
   const paths = getPaths(functionId);
-  console.log(paths);
+
   try {
     await extractZip(zipPath, paths.outputDir);
     await fs.promises.unlink(zipPath);
 
-    const image = await prepareRootfs(functionId);
+    const image = prepareRootfs(functionId);
 
     const fc = await startFirecrackerProcess(paths.apiSock);
 
@@ -75,26 +76,6 @@ async function deployFunction(zipPath: string) {
   } finally {
     await cleanupResources(paths);
   }
-}
-
-function getPaths(functionId: string) {
-  const baseExtractDir = path.resolve("extracted");
-
-  return {
-    functionId,
-
-    outputDir: path.join(baseExtractDir, functionId),
-
-    apiSock: `/tmp/firecracker-${functionId}.socket`,
-    vsock: `/tmp/vsock-${functionId}.sock`,
-
-    rootfs: path.resolve(`rootfs/rootfs-${functionId}.ext4`),
-
-    snapshot: path.resolve(`snapshot/snapshot-${functionId}`),
-    memory: path.resolve(`mem/mem-${functionId}`),
-
-    kernel: path.resolve("vmlinux-6.1.155"),
-  };
 }
 
 async function extractZip(zip: string, outputDir: string) {
@@ -200,7 +181,7 @@ function waitForVMReady(fc: any) {
     }, 50000);
 
     fc.stdout.on("data", (d: Buffer) => {
-      console.log(d.toString());
+
       if (d.toString().includes("READY")) {
         clearTimeout(timeout);
         setTimeout(resolve, 200);

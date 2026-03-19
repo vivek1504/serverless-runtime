@@ -1,139 +1,147 @@
-2026-03-19T00:25:17.443200963 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
-2026-03-19T00:25:17.443221624 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 54 us.
-2026-03-19T00:25:17.444210652 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/actions" with body "{\"action_type\":\"InstanceStart\"}".
-2026-03-19T00:25:17.444227413 [anonymous-instance:main:DEBUG] event_start: build microvm for boot
-2026-03-19T00:25:17.444878482 [anonymous-instance:main:DEBUG] vmgenid: building VMGenID device. Address: 0x000dfff0. IRQ: 5
-2026-03-19T00:25:17.455100449 [anonymous-instance:main:DEBUG] Kernel loaded using PVH boot protocol
-2026-03-19T00:25:17.455146945 [anonymous-instance:main:DEBUG] acpi: Building AML for VirtIO device _SB_.V001. memory range: 0xc0001000:4096 gsi: 6
-2026-03-19T00:25:17.455217613 [anonymous-instance:main:DEBUG] acpi: Building AML for VirtIO device _SB_.V002. memory range: 0xc0002000:4096 gsi: 7
-2026-03-19T00:25:17.455261408 [anonymous-instance:main:DEBUG] vmgenid: writing new generation ID to guest: 0x16757afa2bf854c8c809dae103ed1cee
-2026-03-19T00:25:17.455375348 [anonymous-instance:main:DEBUG] mptable: Allocated 304 bytes for MPTable 1 vCPUs at address 0x0009fc00
-2026-03-19T00:25:17.455420213 [anonymous-instance:main:DEBUG] acpi: Wrote table (807 bytes) at address: 0x0009fd30
-2026-03-19T00:25:17.455426578 [anonymous-instance:main:DEBUG] acpi: Wrote table (276 bytes) at address: 0x000a0057
-2026-03-19T00:25:17.455431124 [anonymous-instance:main:DEBUG] acpi: Wrote table (64 bytes) at address: 0x000a016b
-2026-03-19T00:25:17.455435523 [anonymous-instance:main:DEBUG] acpi: Wrote table (60 bytes) at address: 0x000a01ab
-2026-03-19T00:25:17.455439683 [anonymous-instance:main:DEBUG] acpi: Wrote table (60 bytes) at address: 0x000a01e7
-2026-03-19T00:25:17.455444274 [anonymous-instance:main:DEBUG] acpi: Wrote RSDP (36 bytes) at address: 0x000e0000
-2026-03-19T00:25:17.455678730 [anonymous-instance:main:DEBUG] event_end: build microvm for boot
-2026-03-19T00:25:17.455684495 [anonymous-instance:main:DEBUG] event_start: boot microvm
-2026-03-19T00:25:17.455687807 [anonymous-instance:main:INFO] Artificially kick devices
-2026-03-19T00:25:17.455709929 [anonymous-instance:fc_vcpu 0:WARN] Received a VcpuEvent::Resume message with immediate_exit enabled. immediate_exit was disabled before proceeding
-2026-03-19T00:25:17.455730895 [anonymous-instance:main:DEBUG] event_end: boot microvm
-2026-03-19T00:25:17.455768755 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
-2026-03-19T00:25:17.455782532 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 11574 us.
-2026-03-19T00:25:17.461805393 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO write @ 0xcf8:0x4 failed: bus_error: MissingAddressRange
-2026-03-19T00:25:17.461842870 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0xcfc:0x2 failed: bus_error: MissingAddressRange
-2026-03-19T00:25:17.588215754 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0x87:0x1 failed: bus_error: MissingAddressRange
-2026-03-19T00:25:18.569673710 [anonymous-instance:fc_api:INFO] The API server received a Patch request on "/vm" with body "{\"state\":\"Paused\"}".
-2026-03-19T00:25:18.569996026 [anonymous-instance:main:INFO] 'pause vm' VMM action took 129 us.
-2026-03-19T00:25:18.570083935 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
-2026-03-19T00:25:18.570114907 [anonymous-instance:fc_api:INFO] 'pause vm' API request took 456 us.
-2026-03-19T00:25:18.570143325 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 484 us.
-2026-03-19T00:25:18.573863409 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/snapshot/create" with body "{\"snapshot_type\":\"Full\",\"snapshot_path\":\"./snapshot/snapshot_file-fed1b8fe5a9bba8f\",\"mem_file_path\":\"./mem/mem_file-fed1b8fe5a9bba8f\"}".
-2026-03-19T00:25:20.574616357 [anonymous-instance:main:INFO] 'create full snapshot' VMM action took 2000609 us.
-2026-03-19T00:25:20.574753157 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
-2026-03-19T00:25:20.574843784 [anonymous-instance:fc_api:INFO] 'create full snapshot' API request took 2000993 us.
-2026-03-19T00:25:20.574877324 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 2001027 us.
-:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517509524 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517518387 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517534994 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517544219 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517553121 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517561974 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517570870 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517579765 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517588682 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517597597 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517606529 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517615525 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517624648 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517633660 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517642725 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517651771 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517660716 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517669716 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517678783 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517688330 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517700081 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517709984 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517719039 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517739520 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517751096 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517770942 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517784214 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517795123 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517806503 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517819339 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517830744 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517842605 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517856027 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517867516 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517878942 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517890687 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517902333 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517914082 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517927149 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517938710 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517951794 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517963359 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517975877 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517987500 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.517998978 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518010623 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518022122 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518033549 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518044910 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518056322 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518067840 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518079242 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518090827 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518206709 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518219927 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518231710 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518243484 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518254989 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518266665 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518293085 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518304700 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518356846 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518372529 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518384334 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518397575 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518410097 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518421708 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518433212 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518444923 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518456409 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518467894 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518479536 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518491273 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518502738 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518514356 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518525947 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518537429 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518548966 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518560649 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518572183 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518583793 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518595329 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518606771 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518618461 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518629972 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518641432 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518652992 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518665404 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518677188 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518688929 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518700604 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518714148 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518725591 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518737150 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518748918 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518769871 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518783449 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518795325 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-18T23:53:00.518806964 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T21:00:36.412172104 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-19T21:00:36.412212349 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 93 us.
+2026-03-19T21:00:36.413733130 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/actions" with body "{\"action_type\":\"InstanceStart\"}".
+2026-03-19T21:00:36.413772380 [anonymous-instance:main:DEBUG] event_start: build microvm for boot
+2026-03-19T21:00:36.414623551 [anonymous-instance:main:DEBUG] vmgenid: building VMGenID device. Address: 0x000dfff0. IRQ: 5
+2026-03-19T21:00:36.425878355 [anonymous-instance:main:DEBUG] Kernel loaded using PVH boot protocol
+2026-03-19T21:00:36.425933253 [anonymous-instance:main:DEBUG] acpi: Building AML for VirtIO device _SB_.V001. memory range: 0xc0001000:4096 gsi: 6
+2026-03-19T21:00:36.426016695 [anonymous-instance:main:DEBUG] acpi: Building AML for VirtIO device _SB_.V002. memory range: 0xc0002000:4096 gsi: 7
+2026-03-19T21:00:36.426078886 [anonymous-instance:main:DEBUG] vmgenid: writing new generation ID to guest: 0x7663ad1479086999d7e8c6ee6ad0b98b
+2026-03-19T21:00:36.426262401 [anonymous-instance:main:DEBUG] mptable: Allocated 304 bytes for MPTable 1 vCPUs at address 0x0009fc00
+2026-03-19T21:00:36.426361939 [anonymous-instance:main:DEBUG] acpi: Wrote table (807 bytes) at address: 0x0009fd30
+2026-03-19T21:00:36.426376900 [anonymous-instance:main:DEBUG] acpi: Wrote table (276 bytes) at address: 0x000a0057
+2026-03-19T21:00:36.426387905 [anonymous-instance:main:DEBUG] acpi: Wrote table (64 bytes) at address: 0x000a016b
+2026-03-19T21:00:36.426394425 [anonymous-instance:main:DEBUG] acpi: Wrote table (60 bytes) at address: 0x000a01ab
+2026-03-19T21:00:36.426400293 [anonymous-instance:main:DEBUG] acpi: Wrote table (60 bytes) at address: 0x000a01e7
+2026-03-19T21:00:36.426406945 [anonymous-instance:main:DEBUG] acpi: Wrote RSDP (36 bytes) at address: 0x000e0000
+2026-03-19T21:00:36.426733446 [anonymous-instance:main:DEBUG] event_end: build microvm for boot
+2026-03-19T21:00:36.426743806 [anonymous-instance:main:DEBUG] event_start: boot microvm
+2026-03-19T21:00:36.426748887 [anonymous-instance:main:INFO] Artificially kick devices
+2026-03-19T21:00:36.426856291 [anonymous-instance:fc_vcpu 0:WARN] Received a VcpuEvent::Resume message with immediate_exit enabled. immediate_exit was disabled before proceeding
+2026-03-19T21:00:36.426903229 [anonymous-instance:main:DEBUG] event_end: boot microvm
+2026-03-19T21:00:36.426929597 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-19T21:00:36.426956958 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 13228 us.
+2026-03-19T21:00:36.433800526 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO write @ 0xcf8:0x4 failed: bus_error: MissingAddressRange
+2026-03-19T21:00:36.433828012 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0xcfc:0x2 failed: bus_error: MissingAddressRange
+2026-03-19T21:00:36.582285332 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0x87:0x1 failed: bus_error: MissingAddressRange
+2026-03-19T21:00:37.643971292 [anonymous-instance:fc_api:INFO] The API server received a Patch request on "/vm" with body "{\"state\":\"Paused\"}".
+2026-03-19T21:00:37.644374877 [anonymous-instance:main:INFO] 'pause vm' VMM action took 195 us.
+2026-03-19T21:00:37.644563480 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-19T21:00:37.644616343 [anonymous-instance:fc_api:INFO] 'pause vm' API request took 659 us.
+2026-03-19T21:00:37.644656876 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 700 us.
+2026-03-19T21:00:37.647847926 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/snapshot/create" with body "{\"snapshot_type\":\"Full\",\"snapshot_path\":\"/home/omnipotent/programming/lambda/controller/snapshot/snapshot-4786eedee9ceb3d1\",\"mem_file_path\":\"/home/omnipotent/programming/lambda/controller/mem/mem-4786eedee9ceb3d1\"}".
+2026-03-19T21:00:39.645284556 [anonymous-instance:main:INFO] 'create full snapshot' VMM action took 1997263 us.
+2026-03-19T21:00:39.645453478 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-19T21:00:39.645513911 [anonymous-instance:fc_api:INFO] 'create full snapshot' API request took 1997683 us.
+2026-03-19T21:00:39.645541724 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 1997711 us.
+
+write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641524047 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641533151 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641541633 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641549718 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641557822 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641567025 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641596522 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641608923 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641624371 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641638338 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641652813 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641663031 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641672080 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641681415 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641690107 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641698459 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641716851 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641732536 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641749797 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641764314 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641777717 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.641789558 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T18:07:11.730484548 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0x87:0x1 failed: bus_error: MissingAddressRange
+2026-03-19T18:07:12.664127570 [anonymous-instance:fc_api:INFO] The API server received a Patch request on "/vm" with body "{\"state\":\"Paused\"}".
+2026-03-19T18:07:12.664350069 [anonymous-instance:main:INFO] 'pause vm' VMM action took 101 us.
+2026-03-19T18:07:12.664445092 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-19T18:07:12.664518034 [anonymous-instance:fc_api:INFO] 'pause vm' API request took 403 us.
+2026-03-19T18:07:12.664551205 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 437 us.
+2026-03-19T18:07:12.667225412 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/snapshot/create" with body "{\"snapshot_type\":\"Full\",\"snapshot_path\":\"/home/omnipotent/programming/lambda/controller/snapshot/snapshot-fa2ffc4e01424a0d\",\"mem_file_path\":\"/home/omnipotent/programming/lambda/controller/mem/mem-fa2ffc4e01424a0d\"}".
+2026-03-19T18:07:14.744389342 [anonymous-instance:main:INFO] 'create full snapshot' VMM action took 2077061 us.
+2026-03-19T18:07:14.744481050 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-19T18:07:14.744515628 [anonymous-instance:fc_api:INFO] 'create full snapshot' API request took 2077306 us.
+2026-03-19T18:07:14.744534793 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 2077325 us.
+ write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512075457 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512087048 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512099237 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512113442 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512127234 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512140099 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512154307 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512168488 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512181855 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512195973 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512208780 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512223579 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.512235080 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:54:51.583189990 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0x87:0x1 failed: bus_error: MissingAddressRange
+2026-03-19T17:54:52.490462461 [anonymous-instance:fc_api:INFO] The API server received a Patch request on "/vm" with body "{\"state\":\"Paused\"}".
+2026-03-19T17:54:52.490840123 [anonymous-instance:main:INFO] 'pause vm' VMM action took 183 us.
+2026-03-19T17:54:52.490940470 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-19T17:54:52.490984840 [anonymous-instance:fc_api:INFO] 'pause vm' API request took 536 us.
+2026-03-19T17:54:52.491016593 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 568 us.
+2026-03-19T17:54:52.493873333 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/snapshot/create" with body "{\"snapshot_type\":\"Full\",\"snapshot_path\":\"/home/omnipotent/programming/lambda/controller/snapshot/snapshot-ead598df780e9843\",\"mem_file_path\":\"/home/omnipotent/programming/lambda/controller/mem/mem-ead598df780e9843\"}".
+2026-03-19T17:54:52.665528249 [anonymous-instance:main:INFO] 'create full snapshot' VMM action took 171544 us.
+2026-03-19T17:54:52.665563449 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-19T17:54:52.665577713 [anonymous-instance:fc_api:INFO] 'create full snapshot' API request took 171722 us.
+2026-03-19T17:54:52.665594489 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 171738 us.
+the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539375238 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539384156 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539392460 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539401430 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539409691 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539418054 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539426795 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539435077 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539443784 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539455399 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539464759 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539477203 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539489802 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539500392 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539511459 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539522243 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539533292 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539544934 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539557134 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539568644 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539578766 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539600018 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539610994 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539621264 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539631466 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539641694 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539652151 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539662434 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539673053 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539683186 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539693288 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539703924 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539715323 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539727005 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539740133 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539751387 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539762004 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539773519 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539783839 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539794746 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539818988 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539830748 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539841839 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539852981 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.539864186 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-19T17:20:29.657449726 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0x87:0x1 failed: bus_error: MissingAddressRange
+
 2026-03-18T23:53:00.518818488 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
 2026-03-18T23:53:00.518830270 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
 2026-03-18T23:53:00.518841894 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })

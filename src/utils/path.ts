@@ -1,6 +1,6 @@
 import path from "path";
 
-function getPaths(functionId: string) {
+export function getPaths(functionId: string) {
     const baseExtractDir = path.resolve("extracted");
 
     return {
