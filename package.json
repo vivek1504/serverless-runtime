@@ -1,0 +1,27 @@
+{
+  "name": "controller",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.1.0",
+    "adm-zip": "^0.5.16",
+    "axios": "^1.13.6",
+    "child_process": "^1.0.2",
+    "crypto": "^1.0.1",
+    "express": "^5.2.1",
+    "extract-zip": "^2.0.1",
+    "fs": "^0.0.1-security",
+    "multer": "^2.1.1",
+    "unzipper": "^0.12.3"
+  }
+}

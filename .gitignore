@@ -1,0 +1,14 @@
+minimal-rootfs
+node_modules
+runtime
+rootfs/*
+!rootfs/.gitkeep
+rootfs.ext4
+vmlinux-6.1.155
+mem/*
+!mem/.gitkeep
+dist
+snapshot/*
+!snapshot/.gitkeep
+userCode/*
+!userCode/.gitkeep
