@@ -4,7 +4,8 @@ import { spawn } from "child_process";
 import net, { Socket } from "net";
 import axios from "axios";
 import path from "path";
-import fs from "fs";
+import crypto from "crypto";
+import { warmPool } from "../pool.js";
 
 export const invokeRouter = Router();
 
@@ -13,29 +14,48 @@ invokeRouter.use("/:functionId", async (req, res) => {
     const paths = getPaths(functionId);
     const subPath = req.path || "/";
 
-    const fc = spawn("firecracker", ["--api-sock", paths.apiSock]);
-    fc.stderr.on("data", (d) => console.error("FC:", d.toString()));
-
     try {
-        await waitForFirecrackerApiSocket(paths.apiSock);
+        const vm = warmPool.get(functionId)?.find((vm) => !vm.busy);
 
-        const client = createFcCient(paths.apiSock);
+        if (vm) {
+            vm.busy = true;
+            await sendRequest(vm.vsock, subPath, req, res);
+            vm.busy = false;
+            vm.idleTime = Date.now();
+        } else {
+            const instanceId = crypto.randomBytes(4).toString("hex");
+            const apiSock = `/tmp/firecracker-${functionId}-${instanceId}.socket`;
+            const vsock = `/tmp/vsock-${functionId}-${instanceId}.sock`;
 
-        await restoreVm(client, functionId);
+            const fc = spawn("firecracker", ["--api-sock", apiSock]);
+            fc.stderr.on("data", (d) => console.error("FC:", d.toString()));
 
-        await sendRequest(paths, subPath, req, res);
+            await waitForFirecrackerApiSocket(apiSock);
+            const client = createFcCient(apiSock);
+            await restoreVm(client, functionId);
+            await sendRequest(vsock, subPath, req, res);
+
+            let existing = warmPool.get(functionId);
+
+            if (!existing) {
+                existing = [];
+                warmPool.set(functionId, existing);
+            }
+
+            existing.push({
+                firecrackerProcess: fc,
+                apiSock,
+                vsock,
+                busy: false,
+                idleTime: Date.now(),
+            });
+        }
 
     } catch (e) {
         console.error(e);
         if (!res.headersSent) {
             res.status(500).json({ msg: "internal server error" });
         }
-    } finally {
-        fc.kill("SIGTERM");
-        await Promise.allSettled([
-            fs.promises.rm(paths.apiSock, { force: true }),
-            fs.promises.rm(paths.vsock, { force: true }),
-        ]);
     }
 });
 
@@ -99,7 +119,7 @@ function buildPayload(req: any, subPath: string): string {
     }) + "\n";
 }
 
-function readVsockResponse(socket: Socket, timeout: number): Promise<{ type: string; data: any }> {
+function readVsockResponse(socket: Socket, timeout: number): Promise<{ type: string; data: any; error?: string }> {
     return new Promise((resolve, reject) => {
         let buffer = "";
 
@@ -143,8 +163,8 @@ function readVsockResponse(socket: Socket, timeout: number): Promise<{ type: str
     });
 }
 
-async function sendRequest(paths: any, subPath: string, req: any, res: any) {
-    const socket = await connectVsock(paths.vsock);
+async function sendRequest(vsockPath: string, subPath: string, req: any, res: any) {
+    const socket = await connectVsock(vsockPath);
 
     socket.write("CONNECT 5000\n");
     socket.write(buildPayload(req, subPath));
@@ -152,10 +172,15 @@ async function sendRequest(paths: any, subPath: string, req: any, res: any) {
     const msg = await readVsockResponse(socket, 10000);
 
     if (msg.type === "response") {
-        const body = JSON.parse(msg.data.body);
-        res.status(msg.data.statusCode || 200).json(body);
+        const statusCode = msg.data.statusCode || 200;
+        try {
+            const body = JSON.parse(msg.data.body);
+            res.status(statusCode).json(body);
+        } catch {
+            res.status(statusCode).send(msg.data.body ?? "");
+        }
     } else {
-        res.status(msg.data.statusCode || 500).json(msg.data.body);
+        res.status(msg.data?.statusCode || 500).json(msg.data ?? { error: msg.error });
     }
 }
 

@@ -7,6 +7,7 @@ import fs from "fs";
 import { execSync, spawn } from "child_process";
 import axios from "axios";
 import { getPaths } from "../utils/path.js";
+import { warmPool } from "../pool.js";
 
 export const deployRouter = Router();
 
@@ -64,10 +65,15 @@ async function deployFunction(zipPath: string) {
     await configureVM(client, functionId, image);
 
     await readyPromise;
-
     await snapshotVM(client, functionId);
 
-    await stopFirecracker(fc);
+    warmPool.set(functionId, [{
+      firecrackerProcess: fc,
+      apiSock: paths.apiSock,
+      vsock: paths.vsock,
+      busy: false,
+      idleTime: Date.now()
+    }])
 
     return {
       functionId,
@@ -145,6 +151,11 @@ function createFcCient(apiSock: string) {
 }
 
 async function configureVM(client: any, functionId: string, image: string) {
+  await client.put("/machine-config", {
+    vcpu_count: 1,
+    mem_size_mib: 128,
+  });
+
   await client.put("/boot-source", {
     kernel_image_path: path.resolve("vmlinux-6.1.155"),
     boot_args: "console=ttyS0 reboot=k panic=1 pci=off init=/init -- /start.sh",
@@ -198,17 +209,12 @@ async function snapshotVM(client: any, functionId: string) {
     snapshot_path: path.resolve(`snapshot/snapshot-${functionId}`),
     mem_file_path: path.resolve(`mem/mem-${functionId}`),
   });
-}
-
-async function stopFirecracker(fc: any) {
-  fc.kill("SIGTERM");
-  await new Promise((res) => fc.on("exit", res));
+  console.log("at resume vm")
+  await client.patch("/vm", { state: "Resumed" })
 }
 
 async function cleanupResources(paths: any) {
   await Promise.allSettled([
-    fs.promises.rm(paths.apiSock, { force: true }),
-    fs.promises.rm(paths.vsock, { force: true }),
     fs.promises.rm(paths.outputDir, { recursive: true, force: true }),
   ]);
 }
