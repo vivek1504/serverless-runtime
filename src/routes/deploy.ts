@@ -67,14 +67,7 @@ async function deployFunction(zipPath: string) {
     await readyPromise;
     await snapshotVM(client, functionId);
 
-    warmPool.set(functionId, [{
-      firecrackerProcess: fc,
-      apiSock: paths.apiSock,
-      vsock: paths.vsock,
-      busy: false,
-      idleTime: Date.now()
-    }])
-
+    fc.kill("SIGKILL");
     return {
       functionId,
       url: `http://localhost:3000/f/${functionId}`,
@@ -192,7 +185,6 @@ function waitForVMReady(fc: any) {
     }, 50000);
 
     fc.stdout.on("data", (d: Buffer) => {
-
       if (d.toString().includes("READY")) {
         clearTimeout(timeout);
         setTimeout(resolve, 200);
@@ -209,12 +201,12 @@ async function snapshotVM(client: any, functionId: string) {
     snapshot_path: path.resolve(`snapshot/snapshot-${functionId}`),
     mem_file_path: path.resolve(`mem/mem-${functionId}`),
   });
-  console.log("at resume vm")
-  await client.patch("/vm", { state: "Resumed" })
 }
 
 async function cleanupResources(paths: any) {
   await Promise.allSettled([
     fs.promises.rm(paths.outputDir, { recursive: true, force: true }),
+    fs.promises.rm(paths.apiSock),
+    fs.promises.rm(paths.vsock),
   ]);
 }
