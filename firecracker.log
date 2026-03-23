@@ -1,112 +1,111 @@
-2026-03-20T17:36:21.886283614 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
-2026-03-20T17:36:21.886333400 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 112 us.
-2026-03-20T17:36:21.887548394 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/actions" with body "{\"action_type\":\"InstanceStart\"}".
-2026-03-20T17:36:21.887581207 [anonymous-instance:main:DEBUG] event_start: build microvm for boot
-2026-03-20T17:36:21.888320795 [anonymous-instance:main:DEBUG] vmgenid: building VMGenID device. Address: 0x000dfff0. IRQ: 5
-2026-03-20T17:36:21.899316768 [anonymous-instance:main:DEBUG] Kernel loaded using PVH boot protocol
-2026-03-20T17:36:21.899416590 [anonymous-instance:main:DEBUG] acpi: Building AML for VirtIO device _SB_.V001. memory range: 0xc0001000:4096 gsi: 6
-2026-03-20T17:36:21.899528060 [anonymous-instance:main:DEBUG] acpi: Building AML for VirtIO device _SB_.V002. memory range: 0xc0002000:4096 gsi: 7
-2026-03-20T17:36:21.899578416 [anonymous-instance:main:DEBUG] vmgenid: writing new generation ID to guest: 0x41d497287476aa8e3c3fe8f2af28cba0
-2026-03-20T17:36:21.899716297 [anonymous-instance:main:DEBUG] mptable: Allocated 304 bytes for MPTable 1 vCPUs at address 0x0009fc00
-2026-03-20T17:36:21.899769673 [anonymous-instance:main:DEBUG] acpi: Wrote table (807 bytes) at address: 0x0009fd30
-2026-03-20T17:36:21.899777326 [anonymous-instance:main:DEBUG] acpi: Wrote table (276 bytes) at address: 0x000a0057
-2026-03-20T17:36:21.899782569 [anonymous-instance:main:DEBUG] acpi: Wrote table (64 bytes) at address: 0x000a016b
-2026-03-20T17:36:21.899787908 [anonymous-instance:main:DEBUG] acpi: Wrote table (60 bytes) at address: 0x000a01ab
-2026-03-20T17:36:21.899792918 [anonymous-instance:main:DEBUG] acpi: Wrote table (60 bytes) at address: 0x000a01e7
-2026-03-20T17:36:21.899798419 [anonymous-instance:main:DEBUG] acpi: Wrote RSDP (36 bytes) at address: 0x000e0000
-2026-03-20T17:36:21.900054564 [anonymous-instance:main:DEBUG] event_end: build microvm for boot
-2026-03-20T17:36:21.900065437 [anonymous-instance:main:DEBUG] event_start: boot microvm
-2026-03-20T17:36:21.900069844 [anonymous-instance:main:INFO] Artificially kick devices
-2026-03-20T17:36:21.900174074 [anonymous-instance:fc_vcpu 0:WARN] Received a VcpuEvent::Resume message with immediate_exit enabled. immediate_exit was disabled before proceeding
-2026-03-20T17:36:21.900223182 [anonymous-instance:main:DEBUG] event_end: boot microvm
-2026-03-20T17:36:21.900257711 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
-2026-03-20T17:36:21.900290655 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 12745 us.
-2026-03-20T17:36:21.907207355 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO write @ 0xcf8:0x4 failed: bus_error: MissingAddressRange
-2026-03-20T17:36:21.907258790 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0xcfc:0x2 failed: bus_error: MissingAddressRange
-2026-03-20T17:36:22.027211716 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0x87:0x1 failed: bus_error: MissingAddressRange
-2026-03-20T17:36:23.053306185 [anonymous-instance:fc_api:INFO] The API server received a Patch request on "/vm" with body "{\"state\":\"Paused\"}".
-2026-03-20T17:36:23.053619697 [anonymous-instance:main:INFO] 'pause vm' VMM action took 117 us.
-2026-03-20T17:36:23.053749270 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
-2026-03-20T17:36:23.053779369 [anonymous-instance:fc_api:INFO] 'pause vm' API request took 487 us.
-2026-03-20T17:36:23.053799919 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 508 us.
-2026-03-20T17:36:23.056797735 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/snapshot/create" with body "{\"snapshot_type\":\"Full\",\"snapshot_path\":\"/home/omnipotent/programming/lambda/controller/snapshot/snapshot-820656593757c574\",\"mem_file_path\":\"/home/omnipotent/programming/lambda/controller/mem/mem-820656593757c574\"}".
-2026-03-20T17:36:25.076011366 [anonymous-instance:main:INFO] 'create full snapshot' VMM action took 2019056 us.
-2026-03-20T17:36:25.076192971 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
-2026-03-20T17:36:25.076254291 [anonymous-instance:fc_api:INFO] 'create full snapshot' API request took 2019471 us.
-2026-03-20T17:36:25.076288613 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 2019505 us.
-2026-03-20T17:36:25.080824269 [anonymous-instance:fc_api:INFO] The API server received a Patch request on "/vm" with body "{\"state\":\"Resumed\"}".
-2026-03-20T17:36:25.080931021 [anonymous-instance:main:INFO] Artificially kick devices
-2026-03-20T17:36:25.080995230 [anonymous-instance:main:INFO] kick block rootfs.
-2026-03-20T17:36:25.081029639 [anonymous-instance:main:INFO] kick vsock vsock.
-2026-03-20T17:36:25.081170836 [anonymous-instance:fc_vcpu 0:WARN] Received a VcpuEvent::Resume message with immediate_exit enabled. immediate_exit was disabled before proceeding
-2026-03-20T17:36:25.081260903 [anonymous-instance:main:INFO] 'resume vm' VMM action took 336 us.
-2026-03-20T17:36:25.081319618 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
-2026-03-20T17:36:25.081356019 [anonymous-instance:fc_api:INFO] 'resume vm' API request took 546 us.
-2026-03-20T17:36:25.081376405 [anonymous-instance:main:WARN] Got a spurious notification from api thread
-2026-03-20T17:36:25.081432098 [anonymous-instance:main:WARN] Got a spurious notification from api thread
-2026-03-20T17:36:25.081474397 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 568 us.
-2026-03-20T17:36:27.906282525 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=17, evset=IN
-2026-03-20T17:36:27.906673935 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=40, evset=IN
-2026-03-20T17:36:27.906749670 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741824, dst_port: 5000, len: 0, type_: 1, op: 1, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:27.906954759 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741824, len: 0, type_: 1, op: 2, flags: 0, buf_alloc: 262144, fwd_cnt: 0 }
-2026-03-20T17:36:27.907019570 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=40, evset=IN
-2026-03-20T17:36:27.907039190 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741824, dst_port: 5000, len: 710, type_: 1, op: 5, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:27.910268926 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741824, len: 0, type_: 1, op: 6, flags: 0, buf_alloc: 262144, fwd_cnt: 710 }
-2026-03-20T17:36:27.932974465 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741824, len: 317, type_: 1, op: 5, flags: 0, buf_alloc: 262144, fwd_cnt: 710 }
-2026-03-20T17:36:30.008010490 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=17, evset=IN
-2026-03-20T17:36:30.008260062 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=41, evset=IN
-2026-03-20T17:36:30.008348241 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741825, dst_port: 5000, len: 0, type_: 1, op: 1, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:30.008874736 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741825, len: 0, type_: 1, op: 2, flags: 0, buf_alloc: 262144, fwd_cnt: 0 }
-2026-03-20T17:36:30.009034149 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=41, evset=IN
-2026-03-20T17:36:30.009092116 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741825, dst_port: 5000, len: 793, type_: 1, op: 5, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:30.013344415 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741825, len: 0, type_: 1, op: 6, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
-2026-03-20T17:36:30.018214870 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741825, len: 186, type_: 1, op: 5, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
-2026-03-20T17:36:31.442071634 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=17, evset=IN
-2026-03-20T17:36:31.442199578 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=11, evset=IN
-2026-03-20T17:36:31.442240872 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741826, dst_port: 5000, len: 0, type_: 1, op: 1, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:31.442409866 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741826, len: 0, type_: 1, op: 2, flags: 0, buf_alloc: 262144, fwd_cnt: 0 }
-2026-03-20T17:36:31.442472757 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=11, evset=IN
-2026-03-20T17:36:31.442495011 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741826, dst_port: 5000, len: 793, type_: 1, op: 5, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:31.443826784 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741826, len: 0, type_: 1, op: 6, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
-2026-03-20T17:36:31.444819869 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741826, len: 186, type_: 1, op: 5, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
-2026-03-20T17:36:32.127305180 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=17, evset=IN
-2026-03-20T17:36:32.128133459 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=42, evset=IN
-2026-03-20T17:36:32.128269246 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741827, dst_port: 5000, len: 0, type_: 1, op: 1, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:32.128700994 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741827, len: 0, type_: 1, op: 2, flags: 0, buf_alloc: 262144, fwd_cnt: 0 }
-2026-03-20T17:36:32.128854734 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=42, evset=IN
-2026-03-20T17:36:32.128894910 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741827, dst_port: 5000, len: 793, type_: 1, op: 5, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:32.132166940 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741827, len: 0, type_: 1, op: 6, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
-2026-03-20T17:36:32.135965348 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741827, len: 186, type_: 1, op: 5, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
-2026-03-20T17:36:32.553219422 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=17, evset=IN
-2026-03-20T17:36:32.553374040 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=43, evset=IN
-2026-03-20T17:36:32.553402206 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741828, dst_port: 5000, len: 0, type_: 1, op: 1, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:32.553591565 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741828, len: 0, type_: 1, op: 2, flags: 0, buf_alloc: 262144, fwd_cnt: 0 }
-2026-03-20T17:36:32.553613557 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=43, evset=IN
-2026-03-20T17:36:32.553621419 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741828, dst_port: 5000, len: 793, type_: 1, op: 5, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:32.555641066 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741828, len: 0, type_: 1, op: 6, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
-2026-03-20T17:36:32.556537553 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741828, len: 186, type_: 1, op: 5, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
-2026-03-20T17:36:32.712224233 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=17, evset=IN
-2026-03-20T17:36:32.712317212 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=44, evset=IN
-2026-03-20T17:36:32.712343506 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741829, dst_port: 5000, len: 0, type_: 1, op: 1, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:32.712532047 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741829, len: 0, type_: 1, op: 2, flags: 0, buf_alloc: 262144, fwd_cnt: 0 }
-2026-03-20T17:36:32.712561803 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=44, evset=IN
-2026-03-20T17:36:32.712573735 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741829, dst_port: 5000, len: 793, type_: 1, op: 5, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:32.713981255 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741829, len: 0, type_: 1, op: 6, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
-2026-03-20T17:36:32.714909049 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741829, len: 186, type_: 1, op: 5, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
-2026-03-20T17:36:32.908142480 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=17, evset=IN
-2026-03-20T17:36:32.908267155 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=45, evset=IN
-2026-03-20T17:36:32.908292737 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741830, dst_port: 5000, len: 0, type_: 1, op: 1, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:32.908592677 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741830, len: 0, type_: 1, op: 2, flags: 0, buf_alloc: 262144, fwd_cnt: 0 }
-2026-03-20T17:36:32.908616401 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=45, evset=IN
-2026-03-20T17:36:32.908626627 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741830, dst_port: 5000, len: 793, type_: 1, op: 5, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:32.910308905 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741830, len: 0, type_: 1, op: 6, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
-2026-03-20T17:36:32.911325162 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741830, len: 186, type_: 1, op: 5, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
-2026-03-20T17:36:33.099483667 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=17, evset=IN
-2026-03-20T17:36:33.099693431 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=46, evset=IN
-2026-03-20T17:36:33.099747211 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741831, dst_port: 5000, len: 0, type_: 1, op: 1, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
-2026-03-20T17:36:33.099961659 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741831, len: 0, type_: 1, op: 2, flags: 0, buf_alloc: 262144, fwd_cnt: 0 }
-2026-03-20T17:36:33.099986543 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=46, evset=IN
-2026-03-20T17:36:33.099998135 [anonymous-instance:main:DEBUG] vsock muxer: RX pkt: VsockPacketHeader { src_cid: 2, dst_cid: 4687, src_port: 1073741831, dst_port: 5000, len: 793, type_: 1, op: 5, flags: 0, buf_alloc: 65536, fwd_cnt: 0 }
+2026-03-23T18:24:04.337782119 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-23T18:24:04.337812729 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 111 us.
+2026-03-23T18:24:04.338750590 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/actions" with body "{\"action_type\":\"InstanceStart\"}".
+2026-03-23T18:24:04.338782866 [anonymous-instance:main:DEBUG] event_start: build microvm for boot
+2026-03-23T18:24:04.364693805 [anonymous-instance:main:DEBUG] Kernel loaded using PVH boot protocol
+2026-03-23T18:24:04.364778037 [anonymous-instance:main:DEBUG] acpi: Building AML for VirtIO device _SB_.V000. memory range: 0xc0001000:4096 gsi: 5
+2026-03-23T18:24:04.365012665 [anonymous-instance:main:DEBUG] acpi: Building AML for VirtIO device _SB_.V001. memory range: 0xc0002000:4096 gsi: 6
+2026-03-23T18:24:04.365074922 [anonymous-instance:main:DEBUG] vmgenid: building VMGenID device. Address: 0x000dfff0. IRQ: 7
+2026-03-23T18:24:04.365130158 [anonymous-instance:main:DEBUG] vmgenid: writing new generation ID to guest: 0xb5317f1753dbc8de2691493f18158e52
+2026-03-23T18:24:04.365311992 [anonymous-instance:main:DEBUG] mptable: Allocated 304 bytes for MPTable 1 vCPUs at address 0x0009fc00
+2026-03-23T18:24:04.365364793 [anonymous-instance:main:DEBUG] acpi: Wrote table (628 bytes) at address: 0x0009fd30
+2026-03-23T18:24:04.365373640 [anonymous-instance:main:DEBUG] acpi: Wrote table (276 bytes) at address: 0x0009ffa4
+2026-03-23T18:24:04.365380639 [anonymous-instance:main:DEBUG] acpi: Wrote table (64 bytes) at address: 0x000a00b8
+2026-03-23T18:24:04.365387948 [anonymous-instance:main:DEBUG] acpi: Wrote table (60 bytes) at address: 0x000a00f8
+2026-03-23T18:24:04.365394396 [anonymous-instance:main:DEBUG] acpi: Wrote table (60 bytes) at address: 0x000a0134
+2026-03-23T18:24:04.365401160 [anonymous-instance:main:DEBUG] acpi: Wrote RSDP (36 bytes) at address: 0x000e0000
+2026-03-23T18:24:04.365726115 [anonymous-instance:main:DEBUG] event_end: build microvm for boot
+2026-03-23T18:24:04.365734302 [anonymous-instance:main:DEBUG] event_start: boot microvm
+2026-03-23T18:24:04.365739039 [anonymous-instance:main:INFO] Artificially kick devices
+2026-03-23T18:24:04.365796419 [anonymous-instance:fc_vcpu 0:WARN] Received a VcpuEvent::Resume message with immediate_exit enabled. immediate_exit was disabled before proceeding
+2026-03-23T18:24:04.365820633 [anonymous-instance:main:DEBUG] event_end: boot microvm
+2026-03-23T18:24:04.365946299 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-23T18:24:04.365985362 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 27238 us.
+2026-03-23T18:24:04.373123212 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO write @ 0xcf8:0x4 failed: bus_error: MissingAddressRange
+2026-03-23T18:24:04.373169366 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0xcfc:0x2 failed: bus_error: MissingAddressRange
+2026-03-23T18:24:04.386472208 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386524011 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386539029 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386552607 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386566151 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386578111 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386592506 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386604672 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386617215 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386630296 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386643041 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386655874 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386668868 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386681686 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386694720 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386708399 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386721415 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386734781 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386748079 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386760842 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386773704 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386786382 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386799753 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386812488 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386825259 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386837928 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386862106 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386923560 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386939090 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386956274 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386972614 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.386989621 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387007239 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387020421 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387034082 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387060995 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387074652 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387087618 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387100437 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387113827 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387126814 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387140356 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387153354 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387166841 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387188152 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387208982 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387223974 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387236870 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387251155 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387264025 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387278336 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387293285 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387306205 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387320001 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387333073 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387347257 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387360445 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387373927 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387387013 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387400388 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387413304 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387426359 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387439539 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387452522 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387465254 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387486970 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387504426 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387518005 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387530872 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387543769 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.387556465 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-23T18:24:04.523539370 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0x87:0x1 failed: bus_error: MissingAddressRange
+2026-03-23T18:24:05.583754263 [anonymous-instance:fc_api:INFO] The API server received a Patch request on "/vm" with body "{\"state\":\"Paused\"}".
+2026-03-23T18:24:05.585911057 [anonymous-instance:main:INFO] 'pause vm' VMM action took 1960 us.
+2026-03-23T18:24:05.586007369 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-23T18:24:05.586059951 [anonymous-instance:fc_api:INFO] 'pause vm' API request took 2319 us.
+2026-03-23T18:24:05.586089631 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 2348 us.
+2026-03-23T18:24:05.590425523 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/snapshot/create" with body "{\"snapshot_type\":\"Full\",\"snapshot_path\":\"/home/omnipotent/programming/lambda/controller/snapshot/snapshot-79d1ff43da2a7949\",\"mem_file_path\":\"/home/omnipotent/programming/lambda/controller/mem/mem-79d1ff43da2a7949\"}".
+2026-03-23T18:24:07.592489846 [anonymous-instance:main:INFO] 'create full snapshot' VMM action took 2001898 us.
+2026-03-23T18:24:07.592658357 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-23T18:24:07.592716841 [anonymous-instance:fc_api:INFO] 'create full snapshot' API request took 2002306 us.
+2026-03-23T18:24:07.592752360 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 2002342 us.
+t: 0 }
 2026-03-20T17:36:33.101578791 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741831, len: 0, type_: 1, op: 6, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
 2026-03-20T17:36:33.102557168 [anonymous-instance:main:DEBUG] vsock: muxer.send[rxq.len=0]: VsockPacketHeader { src_cid: 4687, dst_cid: 2, src_port: 5000, dst_port: 1073741831, len: 186, type_: 1, op: 5, flags: 0, buf_alloc: 262144, fwd_cnt: 793 }
 2026-03-20T17:36:33.277867886 [anonymous-instance:main:DEBUG] vsock: muxer processing event: fd=17, evset=IN
