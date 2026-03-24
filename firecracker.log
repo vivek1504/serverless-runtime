@@ -1,38 +1,42 @@
-2026-03-23T18:24:04.337782119 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
-2026-03-23T18:24:04.337812729 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 111 us.
-2026-03-23T18:24:04.338750590 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/actions" with body "{\"action_type\":\"InstanceStart\"}".
-2026-03-23T18:24:04.338782866 [anonymous-instance:main:DEBUG] event_start: build microvm for boot
-2026-03-23T18:24:04.364693805 [anonymous-instance:main:DEBUG] Kernel loaded using PVH boot protocol
-2026-03-23T18:24:04.364778037 [anonymous-instance:main:DEBUG] acpi: Building AML for VirtIO device _SB_.V000. memory range: 0xc0001000:4096 gsi: 5
-2026-03-23T18:24:04.365012665 [anonymous-instance:main:DEBUG] acpi: Building AML for VirtIO device _SB_.V001. memory range: 0xc0002000:4096 gsi: 6
-2026-03-23T18:24:04.365074922 [anonymous-instance:main:DEBUG] vmgenid: building VMGenID device. Address: 0x000dfff0. IRQ: 7
-2026-03-23T18:24:04.365130158 [anonymous-instance:main:DEBUG] vmgenid: writing new generation ID to guest: 0xb5317f1753dbc8de2691493f18158e52
-2026-03-23T18:24:04.365311992 [anonymous-instance:main:DEBUG] mptable: Allocated 304 bytes for MPTable 1 vCPUs at address 0x0009fc00
-2026-03-23T18:24:04.365364793 [anonymous-instance:main:DEBUG] acpi: Wrote table (628 bytes) at address: 0x0009fd30
-2026-03-23T18:24:04.365373640 [anonymous-instance:main:DEBUG] acpi: Wrote table (276 bytes) at address: 0x0009ffa4
-2026-03-23T18:24:04.365380639 [anonymous-instance:main:DEBUG] acpi: Wrote table (64 bytes) at address: 0x000a00b8
-2026-03-23T18:24:04.365387948 [anonymous-instance:main:DEBUG] acpi: Wrote table (60 bytes) at address: 0x000a00f8
-2026-03-23T18:24:04.365394396 [anonymous-instance:main:DEBUG] acpi: Wrote table (60 bytes) at address: 0x000a0134
-2026-03-23T18:24:04.365401160 [anonymous-instance:main:DEBUG] acpi: Wrote RSDP (36 bytes) at address: 0x000e0000
-2026-03-23T18:24:04.365726115 [anonymous-instance:main:DEBUG] event_end: build microvm for boot
-2026-03-23T18:24:04.365734302 [anonymous-instance:main:DEBUG] event_start: boot microvm
-2026-03-23T18:24:04.365739039 [anonymous-instance:main:INFO] Artificially kick devices
-2026-03-23T18:24:04.365796419 [anonymous-instance:fc_vcpu 0:WARN] Received a VcpuEvent::Resume message with immediate_exit enabled. immediate_exit was disabled before proceeding
-2026-03-23T18:24:04.365820633 [anonymous-instance:main:DEBUG] event_end: boot microvm
-2026-03-23T18:24:04.365946299 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
-2026-03-23T18:24:04.365985362 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 27238 us.
-2026-03-23T18:24:04.373123212 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO write @ 0xcf8:0x4 failed: bus_error: MissingAddressRange
-2026-03-23T18:24:04.373169366 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0xcfc:0x2 failed: bus_error: MissingAddressRange
-2026-03-23T18:24:04.386472208 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-23T18:24:04.386524011 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-23T18:24:04.386539029 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-23T18:24:04.386552607 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-23T18:24:04.386566151 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-23T18:24:04.386578111 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-23T18:24:04.386592506 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-23T18:24:04.386604672 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-23T18:24:04.386617215 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
-2026-03-23T18:24:04.386630296 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
+2026-03-24T21:59:24.036765244 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-24T21:59:24.036833995 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 332 us.
+2026-03-24T21:59:24.039614063 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/actions" with body "{\"action_type\":\"InstanceStart\"}".
+2026-03-24T21:59:24.039711266 [anonymous-instance:main:DEBUG] event_start: build microvm for boot
+2026-03-24T21:59:24.053358047 [anonymous-instance:main:DEBUG] Kernel loaded using PVH boot protocol
+2026-03-24T21:59:24.053397384 [anonymous-instance:main:DEBUG] acpi: Building AML for VirtIO device _SB_.V000. memory range: 0xc0001000:4096 gsi: 5
+2026-03-24T21:59:24.053546041 [anonymous-instance:main:DEBUG] acpi: Building AML for VirtIO device _SB_.V001. memory range: 0xc0002000:4096 gsi: 6
+2026-03-24T21:59:24.053665867 [anonymous-instance:main:DEBUG] vmgenid: building VMGenID device. Address: 0x000dfff0. IRQ: 7
+2026-03-24T21:59:24.053694967 [anonymous-instance:main:DEBUG] vmgenid: writing new generation ID to guest: 0x2acb4104b394495cb22dc9ce33233b52
+2026-03-24T21:59:24.053793618 [anonymous-instance:main:DEBUG] mptable: Allocated 304 bytes for MPTable 1 vCPUs at address 0x0009fc00
+2026-03-24T21:59:24.053822509 [anonymous-instance:main:DEBUG] acpi: Wrote table (628 bytes) at address: 0x0009fd30
+2026-03-24T21:59:24.053832241 [anonymous-instance:main:DEBUG] acpi: Wrote table (276 bytes) at address: 0x0009ffa4
+2026-03-24T21:59:24.053836034 [anonymous-instance:main:DEBUG] acpi: Wrote table (64 bytes) at address: 0x000a00b8
+2026-03-24T21:59:24.053839421 [anonymous-instance:main:DEBUG] acpi: Wrote table (60 bytes) at address: 0x000a00f8
+2026-03-24T21:59:24.053843405 [anonymous-instance:main:DEBUG] acpi: Wrote table (60 bytes) at address: 0x000a0134
+2026-03-24T21:59:24.053847080 [anonymous-instance:main:DEBUG] acpi: Wrote RSDP (36 bytes) at address: 0x000e0000
+2026-03-24T21:59:24.054112129 [anonymous-instance:main:DEBUG] event_end: build microvm for boot
+2026-03-24T21:59:24.054118141 [anonymous-instance:main:DEBUG] event_start: boot microvm
+2026-03-24T21:59:24.054122053 [anonymous-instance:main:INFO] Artificially kick devices
+2026-03-24T21:59:24.054170746 [anonymous-instance:fc_vcpu 0:WARN] Received a VcpuEvent::Resume message with immediate_exit enabled. immediate_exit was disabled before proceeding
+2026-03-24T21:59:24.054192847 [anonymous-instance:main:DEBUG] event_end: boot microvm
+2026-03-24T21:59:24.054247476 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-24T21:59:24.054261498 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 14654 us.
+2026-03-24T21:59:24.059837740 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO write @ 0xcf8:0x4 failed: bus_error: MissingAddressRange
+2026-03-24T21:59:24.059856259 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0xcfc:0x2 failed: bus_error: MissingAddressRange
+2026-03-24T21:59:24.222128579 [anonymous-instance:fc_vcpu 0:WARN] vcpu: IO read @ 0x87:0x1 failed: bus_error: MissingAddressRange
+2026-03-24T21:59:25.229790096 [anonymous-instance:fc_api:INFO] The API server received a Patch request on "/vm" with body "{\"state\":\"Paused\"}".
+2026-03-24T21:59:25.230102600 [anonymous-instance:main:INFO] 'pause vm' VMM action took 168 us.
+2026-03-24T21:59:25.230221654 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-24T21:59:25.230265739 [anonymous-instance:fc_api:INFO] 'pause vm' API request took 491 us.
+2026-03-24T21:59:25.230289692 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 515 us.
+2026-03-24T21:59:25.233519004 [anonymous-instance:fc_api:INFO] The API server received a Put request on "/snapshot/create" with body "{\"snapshot_type\":\"Full\",\"snapshot_path\":\"/home/omnipotent/programming/lambda/controller/snapshot/snapshot-e7f6c4ebd3de8889\",\"mem_file_path\":\"/home/omnipotent/programming/lambda/controller/mem/mem-e7f6c4ebd3de8889\"}".
+2026-03-24T21:59:27.280077021 [anonymous-instance:main:INFO] 'create full snapshot' VMM action took 2046430 us.
+2026-03-24T21:59:27.280289185 [anonymous-instance:fc_api:INFO] The request was executed successfully. Status code: 204 No Content.
+2026-03-24T21:59:27.280347159 [anonymous-instance:fc_api:INFO] 'create full snapshot' API request took 2046848 us.
+2026-03-24T21:59:27.280373936 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 2046875 us.
+2048041 us.
+2026-03-24T21:58:27.561506496 [anonymous-instance:fc_api:DEBUG] Total previous API call duration: 2048068 us.
+:04.386630296 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
 2026-03-23T18:24:04.386643041 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
 2026-03-23T18:24:04.386655874 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
 2026-03-23T18:24:04.386668868 [anonymous-instance:fc_vcpu 0:ERROR] Failed the write to serial: IOError(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
