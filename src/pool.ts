@@ -1,5 +1,6 @@
 import type { ChildProcessWithoutNullStreams } from "child_process";
 import fs from "fs";
+import type { Socket } from "net";
 
 export interface Vm {
   firecrackerProcess: ChildProcessWithoutNullStreams;
@@ -7,6 +8,7 @@ export interface Vm {
   vsock: string;
   busy: boolean;
   idleTime: number;
+  socket?: Socket;
 }
 
 export const warmPool = new Map<string, Vm[]>();

@@ -5,7 +5,7 @@ import net, { Socket } from "net";
 import axios from "axios";
 import path from "path";
 import crypto from "crypto";
-import { warmPool } from "../pool.js";
+import { warmPool, type Vm } from "../pool.js";
 
 export const invokeRouter = Router();
 
@@ -19,7 +19,7 @@ invokeRouter.use("/:functionId", async (req, res) => {
 
     if (vm) {
       vm.busy = true;
-      await sendRequest(vm.vsock, subPath, req, res);
+      await sendRequest(vm.vsock, subPath, req, res, vm);
       vm.busy = false;
       vm.idleTime = Date.now();
     } else {
@@ -34,7 +34,19 @@ invokeRouter.use("/:functionId", async (req, res) => {
       await waitForFirecrackerApiSocket(apiSock);
       const client = createFcCient(apiSock);
       await restoreVm(client, functionId, vsock);
-      await sendRequest(vsock, subPath, req, res);
+
+      const newVm: Vm = {
+        firecrackerProcess: fc,
+        apiSock,
+        vsock,
+        busy: true,
+        idleTime: Date.now(),
+      };
+
+      await sendRequest(vsock, subPath, req, res, newVm);
+
+      newVm.busy = false;
+      newVm.idleTime = Date.now();
 
       let existing = warmPool.get(functionId);
 
@@ -43,13 +55,7 @@ invokeRouter.use("/:functionId", async (req, res) => {
         warmPool.set(functionId, existing);
       }
 
-      existing.push({
-        firecrackerProcess: fc,
-        apiSock,
-        vsock,
-        busy: false,
-        idleTime: Date.now(),
-      });
+      existing.push(newVm);
     }
   } catch (e: any) {
     console.error(e);
@@ -130,25 +136,33 @@ function readVsockResponse(
   return new Promise((resolve, reject) => {
     let buffer = "";
 
+    let onData: (chunk: Buffer) => void;
+    let onError: (err: Error) => void;
+    let onEnd: () => void;
+
+    const cleanup = () => {
+      socket.removeListener("data", onData);
+      socket.removeListener("error", onError);
+      socket.removeListener("end", onEnd);
+    };
+
     const timer = setTimeout(() => {
       socket.destroy();
       reject(new Error("Function timeout"));
     }, timeout);
 
-    socket.on("data", (chunk) => {
+    onData = (chunk: Buffer) => {
       buffer += chunk.toString();
-
       let index;
       while ((index = buffer.indexOf("\n")) >= 0) {
         const line = buffer.slice(0, index);
         buffer = buffer.slice(index + 1);
-
         if (!line.trim() || line.startsWith("OK")) continue;
-
         try {
           const msg = JSON.parse(line);
           if (msg.type === "response" || msg.type === "error") {
             clearTimeout(timer);
+            cleanup();
             resolve(msg);
             return;
           }
@@ -156,17 +170,23 @@ function readVsockResponse(
           console.error("invalid json:", line);
         }
       }
-    });
+    };
 
-    socket.on("error", (err) => {
+    onError = (err: Error) => {
       clearTimeout(timer);
+      cleanup();
       reject(err);
-    });
+    };
 
-    socket.on("end", () => {
+    onEnd = () => {
       clearTimeout(timer);
+      cleanup();
       reject(new Error("Connection closed before response"));
-    });
+    };
+
+    socket.on("data", onData);
+    socket.on("error", onError);
+    socket.on("end", onEnd);
   });
 }
 
@@ -175,10 +195,11 @@ async function sendRequest(
   subPath: string,
   req: any,
   res: any,
+  vm: Vm,
 ) {
-  const socket = await connectVsock(vsockPath);
+  const socket = await getVmSocket(vm);
 
-  socket.write("CONNECT 5000\n");
+  // socket.write("CONNECT 5000\n");
   socket.write(buildPayload(req, subPath));
 
   const msg = await readVsockResponse(socket, 10000);
@@ -220,4 +241,14 @@ async function connectVsock(path: string, timeout = 5000): Promise<Socket> {
     };
     tryConnect();
   });
+}
+
+async function getVmSocket(vm: Vm) {
+  if (vm.socket && !vm.socket.destroyed) {
+    return vm.socket;
+  }
+
+  vm.socket = await connectVsock(vm.vsock);
+  vm.socket.write("CONNECT 5000\n");
+  return vm.socket;
 }
