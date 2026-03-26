@@ -5,9 +5,28 @@ import net, { Socket } from "net";
 import axios from "axios";
 import path from "path";
 import crypto from "crypto";
-import { warmPool, type Vm } from "../pool.js";
+import { type Vm } from "../pool.js";
+import fs from "fs";
 
 export const invokeRouter = Router();
+
+const MAX_VMS = 100;
+
+interface requestTask {
+  req: any;
+  res: any;
+  subPath: string;
+  resolve: () => void;
+  reject: (err: any) => void;
+}
+
+interface functionType {
+  queue: requestTask[];
+  vms: Vm[];
+  functionId: string;
+}
+
+const functions = new Map<string, functionType>();
 
 invokeRouter.use("/:functionId", async (req, res) => {
   const functionId = req.params.functionId;
@@ -15,48 +34,22 @@ invokeRouter.use("/:functionId", async (req, res) => {
   const subPath = req.path || "/";
 
   try {
-    const vm = warmPool.get(functionId)?.find((vm) => !vm.busy);
+    let fn = functions.get(functionId);
 
-    if (vm) {
-      vm.busy = true;
-      await sendRequest(vm.vsock, subPath, req, res, vm);
-      vm.busy = false;
-      vm.idleTime = Date.now();
-    } else {
-      console.log("\x1b[36m%s\x1b[0m", "request from snapshot");
-      const instanceId = crypto.randomBytes(4).toString("hex");
-      const apiSock = `/tmp/firecracker-${functionId}-${instanceId}.socket`;
-      const vsock = `/tmp/vsock-${functionId}-${instanceId}.sock`;
-
-      const fc = spawn("firecracker", ["--api-sock", apiSock]);
-      fc.stderr.on("data", (d) => console.error("FC:", d.toString()));
-
-      await waitForFirecrackerApiSocket(apiSock);
-      const client = createFcCient(apiSock);
-      await restoreVm(client, functionId, vsock);
-
-      const newVm: Vm = {
-        firecrackerProcess: fc,
-        apiSock,
-        vsock,
-        busy: true,
-        idleTime: Date.now(),
+    if (!fn) {
+      fn = {
+        functionId,
+        queue: [],
+        vms: [],
       };
-
-      await sendRequest(vsock, subPath, req, res, newVm);
-
-      newVm.busy = false;
-      newVm.idleTime = Date.now();
-
-      let existing = warmPool.get(functionId);
-
-      if (!existing) {
-        existing = [];
-        warmPool.set(functionId, existing);
-      }
-
-      existing.push(newVm);
+      functions.set(functionId, fn);
     }
+
+    await new Promise<void>((resolve, reject) => {
+      const task: requestTask = { req, res, subPath, resolve, reject };
+      fn!.queue.push(task);
+      processRequest(fn!);
+    });
   } catch (e: any) {
     console.error(e);
     if (!res.headersSent) {
@@ -64,6 +57,75 @@ invokeRouter.use("/:functionId", async (req, res) => {
     }
   }
 });
+
+async function createVm(functionId: string, fn: functionType) {
+  console.log("\x1b[32mCreate Vm\x1b[0m");
+  const instanceId = crypto.randomBytes(4).toString("hex");
+  const apiSock = `/tmp/firecracker-${functionId}-${instanceId}.socket`;
+  const vsock = `/tmp/vsock-${functionId}-${instanceId}.sock`;
+
+  const fc = spawn("firecracker", ["--api-sock", apiSock]);
+  fc.stderr.on("data", (d) => console.error("FC:", d.toString()));
+  fc.on("exit", () => {
+    console.log("VM exited:", instanceId);
+
+    const fn = functions.get(functionId);
+    if (!fn) return;
+
+    const vm = fn.vms.find((v) => v.firecrackerProcess === fc);
+    if (!vm) return;
+
+    cleanupVm(fn, vm);
+  });
+
+  await waitForFirecrackerApiSocket(apiSock);
+  const client = createFcCient(apiSock);
+  await restoreVm(client, functionId, vsock);
+
+  const newVm: Vm = {
+    firecrackerProcess: fc,
+    apiSock,
+    vsock,
+    busy: true,
+    idleTime: Date.now(),
+  };
+
+  fn.vms.push(newVm);
+  return newVm;
+}
+
+async function processRequest(fn: functionType) {
+  if (fn.queue.length === 0) return;
+
+  let vm = fn.vms.find((v) => !v.busy);
+
+  if (!vm && fn.vms.length < MAX_VMS) {
+    vm = await createVm(fn.functionId, fn);
+  }
+
+  if (!vm) return;
+
+  const task = fn.queue.shift();
+  if (!task) return;
+
+  vm.busy = true;
+
+  handleTask(fn, vm, task);
+}
+
+async function handleTask(fn: functionType, vm: Vm, task: requestTask) {
+  try {
+    await sendRequest(task.subPath, task.req, task.res, vm);
+    task.resolve();
+  } catch (err) {
+    task.reject(err);
+  } finally {
+    vm.busy = false;
+    vm.idleTime = Date.now();
+
+    processRequest(fn);
+  }
+}
 
 async function waitForFirecrackerApiSocket(path: string, timeout = 5000) {
   return new Promise<void>((resolve, reject) => {
@@ -190,16 +252,9 @@ function readVsockResponse(
   });
 }
 
-async function sendRequest(
-  vsockPath: string,
-  subPath: string,
-  req: any,
-  res: any,
-  vm: Vm,
-) {
+async function sendRequest(subPath: string, req: any, res: any, vm: Vm) {
   const socket = await getVmSocket(vm);
 
-  // socket.write("CONNECT 5000\n");
   socket.write(buildPayload(req, subPath));
 
   const msg = await readVsockResponse(socket, 10000);
@@ -252,3 +307,36 @@ async function getVmSocket(vm: Vm) {
   vm.socket.write("CONNECT 5000\n");
   return vm.socket;
 }
+
+async function cleanupVm(fn: functionType, vm: Vm) {
+  try {
+    vm.firecrackerProcess.kill();
+  } catch (e) {
+    console.error("Error Killing vm: ", e);
+  }
+
+  try {
+    if (fs.existsSync(vm.apiSock)) fs.unlinkSync(vm.apiSock);
+    if (fs.existsSync(vm.vsock)) fs.unlinkSync(vm.vsock);
+  } catch (e) {
+    console.error("Error cleaning sockets:", e);
+  }
+
+  fn.vms = fn.vms.filter((v) => v !== vm);
+}
+
+setInterval(() => {
+  const now = Date.now();
+
+  for (const [functionId, fn] of functions.entries()) {
+    for (const vm of [...fn.vms]) {
+      if (!vm.busy && now - vm.idleTime > 30000) {
+        cleanupVm(fn, vm);
+      }
+    }
+
+    if (fn.vms.length === 0 && fn.queue.length === 0) {
+      functions.delete(functionId);
+    }
+  }
+}, 10000);
