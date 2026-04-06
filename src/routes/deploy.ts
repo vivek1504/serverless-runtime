@@ -7,7 +7,6 @@ import fs from "fs";
 import { execSync, spawn } from "child_process";
 import axios from "axios";
 import { getPaths } from "../utils/path.js";
-import { warmPool } from "../pool.js";
 
 export const deployRouter = Router();
 
@@ -150,7 +149,7 @@ async function configureVM(client: any, functionId: string, image: string) {
   });
 
   await client.put("/boot-source", {
-    kernel_image_path: path.resolve("vmlinux-6.1.155"),
+    kernel_image_path: path.resolve("vmlinux"),
     boot_args: "console=ttyS0 reboot=k panic=1 pci=off init=/init -- /start.sh",
   });
 
