@@ -1,16 +1,24 @@
 import { Router } from "express";
 import { getPaths } from "../utils/path.js";
-import { spawn } from "child_process";
+import { spawn, type ChildProcessWithoutNullStreams } from "child_process";
 import net, { Socket } from "net";
 import axios from "axios";
 import path from "path";
 import crypto from "crypto";
-import { type Vm } from "../pool.js";
 import fs from "fs";
 
 export const invokeRouter = Router();
 
 const MAX_VMS = 100;
+
+interface Vm {
+  firecrackerProcess: ChildProcessWithoutNullStreams;
+  apiSock: string;
+  vsock: string;
+  busy: boolean;
+  idleTime: number;
+  socket?: Socket;
+}
 
 interface requestTask {
   req: any;
