@@ -9,5 +9,5 @@ app.use("/deploy", deployRouter);
 app.use("/f", invokeRouter);
 
 app.listen(3000, () => {
-  console.log("listen");
+  console.log("listening on http://localhost:3000");
 });
