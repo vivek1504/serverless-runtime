@@ -11,8 +11,18 @@ const exec = promisify(execCb);
 import axios from "axios";
 import { getPaths } from "../utils/path.js";
 import { performance } from "perf_hooks";
+import PQueue from "p-queue";
 
 export const deployRouter = Router();
+
+type JobStatus =
+  | { state: "pending" }
+  | { state: "running" }
+  | { state: "done"; functionId: string; url: string }
+  | { state: "error"; message: string };
+
+const jobs = new Map<string, JobStatus>();
+const deployQueue = new PQueue({ concurrency: 3 });
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -32,23 +42,34 @@ const upload = multer({
 });
 
 deployRouter.post("/", upload.single("code"), async (req, res) => {
-  try {
-    if (!req.file?.path) {
-      return res.status(400).json({ error: "No file uploaded" });
-    }
-
-    const result = await deployFunction(req.file.path);
-
-    res.json({
-      functionId: result.functionId,
-      status: "deployed",
-      snapshotReady: true,
-      url: result.url,
-    });
-  } catch (err: any) {
-    console.error(err?.response?.data || err);
-    res.status(500).json({ error: err.message });
+  if (!req.file?.path) {
+    return res.status(400).json({ error: "No file uploaded" });
   }
+
+  if (deployQueue.size > 50) {
+    return res.status(429).json({ error: "Too many jobs" });
+  }
+
+  const jobId = crypto.randomBytes(8).toString("hex");
+  jobs.set(jobId, { state: "pending" });
+
+  deployQueue.add(async () => {
+    jobs.set(jobId, { state: "running" })
+    try {
+      const result = await deployFunction(req.file!.path)
+      jobs.set(jobId, { state: "done", functionId: result.functionId, url: result.url })
+    } catch (err: any) {
+      jobs.set(jobId, { state: "error", message: err.message })
+    }
+  })
+
+  res.status(202).json({ jobId, statusUrl: `/deploy/status/${jobId}` });
+});
+
+deployRouter.get("/status/:jobId", (req, res) => {
+  const job = jobs.get(req.params.jobId);
+  if (!job) return res.status(404).json({ error: "Unknown job" });
+  res.json(job);
 });
 
 async function deployFunction(zipPath: string) {
