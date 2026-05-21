@@ -5,6 +5,7 @@ rootfs
 snapshot
 userCode
 firecracker.log
+tsconfig.tsbuildinfo
 
 future.md
 rootfs.ext4

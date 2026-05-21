@@ -63,7 +63,7 @@ deployRouter.post("/", upload.single("code"), async (req, res) => {
     }
   })
 
-  res.status(202).json({ jobId, statusUrl: `/deploy/status/${jobId}` });
+  res.status(202).json({ jobId, statusUrl: `http://localhost:3000/deploy/status/${jobId}` });
 });
 
 deployRouter.get("/status/:jobId", (req, res) => {
