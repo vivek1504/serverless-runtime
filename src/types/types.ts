@@ -26,4 +26,5 @@ export interface RuntimeFunction {
   functionId: string;
   queue: RequestTask[];
   vms: Vm[];
+  processing: boolean;
 }
