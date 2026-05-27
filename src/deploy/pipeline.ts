@@ -7,7 +7,6 @@ import {
   snapshotVM,
   cleanupResources,
 } from "./firecracker.js";
-import { cleanupVm } from "../runtime/cleanup.js";
 import fs from "fs";
 import crypto from "crypto";
 import { getPaths } from "../utils/path.js";
@@ -15,6 +14,7 @@ import { getPaths } from "../utils/path.js";
 export async function deployFunction(zipPath: string) {
   const functionId = crypto.randomBytes(8).toString("hex");
   const paths = getPaths(functionId);
+  let fc: ReturnType<typeof startFirecrackerProcess> extends Promise<infer T> ? T : never;
 
   try {
     const t0 = performance.now();
@@ -27,7 +27,7 @@ export async function deployFunction(zipPath: string) {
     console.log("rootfs:", performance.now() - t1);
 
     const t2 = performance.now();
-    const fc = await startFirecrackerProcess(paths.apiSock);
+    fc = await startFirecrackerProcess(paths.apiSock);
     console.log("fc spawn:", performance.now() - t2);
 
     const t3 = performance.now();
@@ -45,12 +45,14 @@ export async function deployFunction(zipPath: string) {
     await snapshotVM(client, functionId);
     console.log("snapshot time: ", performance.now() - t5);
 
-    fc.kill("SIGKILL");
     return {
       functionId,
       url: `http://localhost:3000/f/${functionId}`,
     };
   } finally {
+    // Always kill the FC process — whether deploy succeeded or failed
+    try { fc!?.kill("SIGKILL"); } catch { }
+
     const t6 = performance.now();
     await cleanupResources(paths);
     console.log("cleanupResources: ", performance.now() - t6);

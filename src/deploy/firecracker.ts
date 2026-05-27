@@ -79,12 +79,16 @@ export async function configureVM(
 
 export function waitForVMReady(fc: any) {
   return new Promise<void>((resolve, reject) => {
+    let buffer = "";
+
     const timeout = setTimeout(() => {
       reject(new Error("VM startup timeout"));
     }, 50000);
 
     fc.stdout.on("data", (d: Buffer) => {
-      if (d.toString().includes("READY")) {
+      buffer += d.toString();
+
+      if (buffer.includes("READY")) {
         clearTimeout(timeout);
         setTimeout(resolve, 200);
       }
