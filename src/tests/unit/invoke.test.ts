@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { buildPayload, readVsockResponse } from "./invoke.js";
+import { buildPayload, readVsockResponse } from "../../runtime/protocol.js";
 import { PassThrough } from "stream";
 import type { Socket } from "net";
 
