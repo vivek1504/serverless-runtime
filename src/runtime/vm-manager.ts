@@ -3,6 +3,7 @@ import net from "net";
 import axios from "axios";
 import path from "path";
 import crypto from "crypto";
+import { vmManagerLogger } from "../utils/logger.js";
 
 import type { RuntimeFunction, Vm } from "../types/types.js";
 
@@ -13,7 +14,21 @@ export async function createVm(
   const instanceId = crypto.randomBytes(4).toString("hex");
   const apiSock = `/tmp/firecracker-${functionId}-${instanceId}.socket`;
   const vsock = `/tmp/vsock-${functionId}-${instanceId}.sock`;
+
+  vmManagerLogger.info(
+    { functionId, instanceId, apiSock, vsock },
+    "creating new VM instance",
+  );
+
   const fc = spawn("firecracker", ["--api-sock", apiSock]);
+
+  fc.on("error", (err) => {
+    vmManagerLogger.error({ instanceId, err }, "firecracker process error");
+  });
+
+  fc.on("exit", (code, signal) => {
+    vmManagerLogger.info({ instanceId, exitCode: code, signal }, "firecracker process exited");
+  });
 
   await waitForFirecrackerApiSocket(apiSock);
 
@@ -30,6 +45,10 @@ export async function createVm(
   };
 
   fn.vms.push(vm);
+  vmManagerLogger.info(
+    { functionId, instanceId, totalVms: fn.vms.length },
+    "VM instance created and ready",
+  );
   return vm;
 }
 
@@ -45,6 +64,10 @@ export async function waitForFirecrackerApiSocket(
 
       client.once("connect", () => {
         client.destroy();
+        vmManagerLogger.debug(
+          { path, elapsedMs: Date.now() - start },
+          "API socket connected",
+        );
         resolve();
       });
 
@@ -52,6 +75,7 @@ export async function waitForFirecrackerApiSocket(
         client.destroy();
 
         if (Date.now() - start > timeout) {
+          vmManagerLogger.error({ path, timeoutMs: timeout }, "API socket connection timeout");
           return reject(new Error("socket timeout"));
         }
         setTimeout(tryConnect, 50);
@@ -77,6 +101,8 @@ export async function restoreVm(
   functionId: string,
   vsock: string,
 ) {
+  vmManagerLogger.debug({ functionId, vsock }, "restoring VM from snapshot");
+
   await client.put("/snapshot/load", {
     snapshot_path: path.resolve(`snapshot/snapshot-${functionId}`),
     mem_backend: {
@@ -89,4 +115,6 @@ export async function restoreVm(
       uds_path: vsock,
     },
   });
+
+  vmManagerLogger.debug({ functionId }, "VM restored from snapshot");
 }
