@@ -254,10 +254,10 @@ Benchmarked using [`autocannon`](https://github.com/mcollina/autocannon) with 10
 
 | Metric | Result |
 |---|---|
-| Throughput | ~5,400 req/sec |
-| p50 latency | ~1ms |
-| p99 latency | ~4ms |
-| Total requests | ~164,000 |
+| Throughput | ~3500 req/sec |
+| p50 latency | ~2ms |
+| p99 latency | ~10ms |
+| Total requests | ~115,000 |
 
 **Key optimizations:** snapshot reuse, persistent runtime, reduced IPC overhead.
 
