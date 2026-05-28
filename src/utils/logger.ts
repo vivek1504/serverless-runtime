@@ -18,16 +18,6 @@ const baseOptions: LoggerOptions = {
   timestamp: pino.stdTimeFunctions.isoTime,
 };
 
-if (!isProd) {
-  baseOptions.transport = {
-    target: "pino-pretty",
-    options: {
-      colorize: true,
-      translateTime: "SYS:HH:MM:ss.l",
-      ignore: "pid,hostname",
-    },
-  };
-}
 
 export const logger = pino(baseOptions);
 
