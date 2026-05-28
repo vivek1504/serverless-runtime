@@ -25,6 +25,8 @@
     "fs": "^0.0.1-security",
     "multer": "^2.1.1",
     "p-queue": "^9.2.0",
+    "pino": "^10.3.1",
+    "pino-http": "^11.0.0",
     "unzipper": "^0.12.3"
   },
   "devDependencies": {
