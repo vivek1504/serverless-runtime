@@ -115,3 +115,53 @@ export const vsockErrors = new Counter({
   labelNames: ["error_type"],
   registers: [register],
 });
+
+export const schedulerEnqueueDuration = new Histogram({
+  name: "scheduler_enqueue_duration_seconds",
+  help: "Time spent in enqueueRequest (registration + queue push)",
+  buckets: [0.00001, 0.00005, 0.0001, 0.0005, 0.001, 0.005, 0.01],
+  registers: [register],
+});
+
+export const schedulerDrainCycleDuration = new Histogram({
+  name: "scheduler_drain_cycle_duration_seconds",
+  help: "Wall-clock time of a single drainBatch() call",
+  buckets: [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5],
+  registers: [register],
+});
+
+export const schedulerDispatchDuration = new Histogram({
+  name: "scheduler_dispatch_overhead_seconds",
+  help: "Overhead per dispatch (dequeue + state transition, excludes sendRequest)",
+  buckets: [0.000001, 0.000005, 0.00001, 0.00005, 0.0001, 0.0005],
+  registers: [register],
+});
+
+export const schedulerVmLookupDuration = new Histogram({
+  name: "scheduler_vm_lookup_duration_seconds",
+  help: "Time to find a ready VM from the readyVms index",
+  buckets: [0.000001, 0.000005, 0.00001, 0.00005, 0.0001],
+  registers: [register],
+});
+
+export const schedulerVmProvisionDuration = new Histogram({
+  name: "scheduler_vm_provision_duration_seconds",
+  help: "End-to-end time for async VM provisioning (createVm call)",
+  buckets: [0.1, 0.25, 0.5, 1, 2, 5, 10],
+  registers: [register],
+});
+
+export const schedulerDrainIterations = new Histogram({
+  name: "scheduler_drain_iterations",
+  help: "Number of dispatch iterations per drainBatch() call",
+  buckets: [1, 5, 10, 25, 50, 100, 250, 512],
+  registers: [register],
+});
+
+export const schedulerQueueWaitTime = new Histogram({
+  name: "scheduler_queue_wait_time_seconds",
+  help: "Time a request spends waiting in the scheduler queue before dispatch",
+  labelNames: ["function_id"],
+  buckets: [0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10],
+  registers: [register],
+});

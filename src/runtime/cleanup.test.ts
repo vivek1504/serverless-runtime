@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { cleanupVm } from "./cleanup.js";
 import fs from "fs";
 import type { RuntimeFunction, Vm } from "../types/types.js";
+import { Deque } from "./deque.js";
 
 function makeVm(overrides = {}): Vm {
   return {
@@ -16,7 +17,17 @@ function makeVm(overrides = {}): Vm {
 }
 
 function makeFn(vms: Vm[]): RuntimeFunction {
-  return { functionId: "fn1", queue: [], vms, processing: false };
+  const readyVms = new Set<Vm>(vms.filter((v) => v.state === "ready"));
+  return {
+    functionId: "fn1",
+    queue: new Deque(),
+    vms,
+    readyVms,
+    weight: 0,
+    deficit: 0,
+    inflightCount: 0,
+    pendingCreations: 0,
+  };
 }
 
 describe("cleanupVm", () => {
@@ -43,4 +54,3 @@ describe("cleanupVm", () => {
     expect(vm.firecrackerProcess.kill).not.toHaveBeenCalled();
   });
 });
-

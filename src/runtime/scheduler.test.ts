@@ -4,8 +4,9 @@ import type { RequestTask } from "../types/types.js";
 
 vi.mock("./vm-manager.js", () => ({
   createVm: vi.fn(async (fid, fn) => {
-    const vm = { id: "mock", state: "ready", idleTime: Date.now() };
+    const vm = { id: "mock", state: "ready" as const, idleTime: Date.now() };
     fn.vms.push(vm);
+    fn.readyVms.add(vm);
     return vm;
   }),
 }));
@@ -14,12 +15,13 @@ vi.mock("./transport.js", () => ({
   sendRequest: vi.fn(async () => {}),
 }));
 
-import { enqueueRequest } from "./scheduler.js";
+import { enqueueRequest, resetSchedulerState } from "./scheduler.js";
 import { sendRequest } from "./transport.js";
 
 describe("scheduler", () => {
   beforeEach(() => {
     runtimeStore.functions.clear();
+    resetSchedulerState();
     vi.clearAllMocks();
   });
 
@@ -51,6 +53,6 @@ function makeTask(subPath = "/"): RequestTask & { promise: Promise<void> } {
   const promise = new Promise<void>((res, rej) => { resolve = res; reject = rej; });
   const req = { method: "GET", headers: {}, query: {}, body: {} };
   const res = { status: vi.fn().mockReturnThis(), json: vi.fn(), send: vi.fn() };
-  return { req, res, subPath, resolve, reject, promise } as any;
+  return { req, res, subPath, resolve, reject, enqueuedAt: performance.now(), promise } as any;
 }
 
