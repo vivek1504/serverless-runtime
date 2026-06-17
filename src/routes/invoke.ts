@@ -23,6 +23,7 @@ invokeRouter.use("/:functionId", async (req, res) => {
         subPath,
         resolve,
         reject,
+        enqueuedAt: performance.now(),
       });
     });
 

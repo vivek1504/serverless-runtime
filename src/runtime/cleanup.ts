@@ -1,6 +1,7 @@
 import fs from "fs";
 import { cleanupLogger } from "../utils/logger.js";
 import { vmCleanupTotal, vmCount } from "../utils/metrics.js";
+import { notifyVmDestroyed } from "./scheduler.js";
 
 import type { RuntimeFunction, Vm } from "../types/types.js";
 
@@ -8,7 +9,10 @@ export async function cleanupVm(fn: RuntimeFunction, vm: Vm) {
   if (vm.cleaned) return;
 
   vm.cleaned = true;
-  cleanupLogger.info({ functionId: fn.functionId, vmId: vm.id }, "cleaning up VM");
+  cleanupLogger.info(
+    { functionId: fn.functionId, vmId: vm.id },
+    "cleaning up VM",
+  );
 
   try {
     vm.firecrackerProcess.kill();
@@ -28,8 +32,10 @@ export async function cleanupVm(fn: RuntimeFunction, vm: Vm) {
   } catch {}
 
   fn.vms = fn.vms.filter((v) => v !== vm);
+  fn.readyVms.delete(vm);
   vmCleanupTotal.inc();
   vmCount.dec({ function_id: fn.functionId, state: "ready" });
+  notifyVmDestroyed();
 
   cleanupLogger.info(
     { functionId: fn.functionId, vmId: vm.id, remainingVms: fn.vms.length },

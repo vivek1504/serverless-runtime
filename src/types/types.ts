@@ -1,5 +1,6 @@
 import type { ChildProcessWithoutNullStreams } from "child_process";
 import type { Socket } from "net";
+import type { Deque } from "../runtime/deque.js";
 
 export type VmState = "creating" | "restoring" | "ready" | "busy" | "dead";
 
@@ -20,11 +21,16 @@ export interface RequestTask {
   subPath: string;
   resolve: () => void;
   reject: (err: any) => void;
+  enqueuedAt: number;
 }
 
 export interface RuntimeFunction {
   functionId: string;
-  queue: RequestTask[];
+  weight: number;
+  deficit: number;
+  inflightCount: number;
+  pendingCreations: number;
+  queue: Deque<RequestTask>;
   vms: Vm[];
-  processing: boolean;
+  readyVms: Set<Vm>;
 }

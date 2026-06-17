@@ -50,6 +50,7 @@ export async function createVm(
     };
 
     fn.vms.push(vm);
+    fn.readyVms.add(vm);
 
     const durationSec = (performance.now() - start) / 1000;
     vmCreationTime.observe(durationSec);
