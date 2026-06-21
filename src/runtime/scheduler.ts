@@ -2,6 +2,7 @@ import { runtimeStore } from "./store.js";
 import { createVm } from "./vm-manager.js";
 import { sendRequest } from "./transport.js";
 import { schedulerLogger } from "../utils/logger.js";
+import { vmCount } from "../utils/metrics.js";
 import {
   invocationQueueDepth,
   schedulerEnqueueDuration,
@@ -224,11 +225,30 @@ function pickReadyVm(fn: RuntimeFunction): Vm | undefined {
 }
 
 function markVmBusy(fn: RuntimeFunction, vm: Vm) {
+  vmCount.dec({
+    function_id: fn.functionId,
+    state: "ready",
+  });
+
+  vmCount.inc({
+    function_id: fn.functionId,
+    state: "busy",
+  });
   vm.state = "busy";
   fn.readyVms.delete(vm);
 }
 
 function markVmReady(fn: RuntimeFunction, vm: Vm) {
+  vmCount.dec({
+    function_id: fn.functionId,
+    state: "busy",
+  });
+
+  vmCount.inc({
+    function_id: fn.functionId,
+    state: "ready",
+  });
+
   vm.state = "ready";
   vm.idleTime = Date.now();
   fn.readyVms.add(vm);

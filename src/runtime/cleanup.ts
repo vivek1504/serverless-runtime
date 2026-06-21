@@ -34,7 +34,7 @@ export async function cleanupVm(fn: RuntimeFunction, vm: Vm) {
   fn.vms = fn.vms.filter((v) => v !== vm);
   fn.readyVms.delete(vm);
   vmCleanupTotal.inc();
-  vmCount.dec({ function_id: fn.functionId, state: "ready" });
+  vmCount.dec({ function_id: fn.functionId, state: vm.state });
   notifyVmDestroyed();
 
   cleanupLogger.info(

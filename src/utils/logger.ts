@@ -3,7 +3,7 @@ import type { Options } from "pino-http";
 import type { LoggerOptions } from "pino";
 
 const baseOptions: LoggerOptions = {
-  level: process.env.LOG_LEVEL || "info",
+  level: process.env.LOG_LEVEL || "silent",
   redact: {
     paths: [
       "req.headers.authorization",
@@ -38,9 +38,7 @@ export const httpLoggerOptions: Options = {
   logger: logger.child({ module: "http" }),
   autoLogging: {
     ignore: (req) =>
-      req.url === "/health" ||
-      req.url === "/ready" ||
-      req.url === "/metrics",
+      req.url === "/health" || req.url === "/ready" || req.url === "/metrics",
   },
   customLogLevel: (_req, res, err) => {
     if (res.statusCode >= 500 || err) return "error";
