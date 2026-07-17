@@ -34,7 +34,8 @@ export const transportLogger = logger.child({ module: "transport" });
 export const protocolLogger = logger.child({ module: "protocol" });
 export const cleanupLogger = logger.child({ module: "cleanup" });
 export const sessionLogger = logger.child({ module: "session" })
-export const gatewayLogger = logger.child({module: "gateway"})
+export const gatewayLogger = logger.child({ module: "gateway" })
+export const execLogger= logger.child({module: "exec" })
 
 export const httpLoggerOptions: Options = {
   logger: logger.child({ module: "http" }),
