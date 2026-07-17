@@ -11,6 +11,7 @@ import type { RuntimeFunction, Vm } from "../types/types.js";
 export async function createVm(
   functionId: string,
   fn: RuntimeFunction,
+  snapshotId?: string,
 ): Promise<Vm> {
   const instanceId = crypto.randomBytes(4).toString("hex");
   const apiSock = `/tmp/firecracker-${functionId}-${instanceId}.socket`;
@@ -38,7 +39,7 @@ export async function createVm(
     await waitForFirecrackerApiSocket(apiSock);
 
     const client = createFcClient(apiSock);
-    await restoreVm(client, functionId, vsock);
+    await restoreVm(client, snapshotId || functionId, vsock);
 
     const vm: Vm = {
       id: instanceId,
