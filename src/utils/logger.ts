@@ -33,7 +33,8 @@ export const vmManagerLogger = logger.child({ module: "vm-manager" });
 export const transportLogger = logger.child({ module: "transport" });
 export const protocolLogger = logger.child({ module: "protocol" });
 export const cleanupLogger = logger.child({ module: "cleanup" });
-export const sessionLogger = logger.child({module: "session"})
+export const sessionLogger = logger.child({ module: "session" })
+export const gatewayLogger = logger.child({module: "gateway"})
 
 export const httpLoggerOptions: Options = {
   logger: logger.child({ module: "http" }),
