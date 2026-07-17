@@ -34,3 +34,59 @@ export interface RuntimeFunction {
   vms: Vm[];
   readyVms: Set<Vm>;
 }
+
+export interface ExecuteMessage {
+  type: "execute";
+  id: string;
+  command: string;
+  args: string[];
+  cwd?: string;
+  env?: Record<string, string>;
+  timeout?: number;
+}
+
+export interface WriteFileMessage {
+  type: "write_file";
+  id: string;
+  path: string;
+  content: string;
+  mode?: number;
+}
+
+export interface ReadFileMessage {
+  type: "read_file";
+  id: string;
+  path: string;
+}
+
+export interface ListFilesMessage {
+  type: "list_files";
+  id: string;
+  path?: string;
+  recursive?: boolean;
+}
+
+export interface CancelMessage {
+  type: "cancel";
+  id: string;
+}
+
+export interface StreamMessage {
+  type: "stream";
+  id: string;
+  stream: "stdout" | "stderr";
+  data: string;
+}
+
+export interface ResponseMessage {
+  type: "response";
+  id: string;
+  data: any;
+}
+
+export interface ErrorMessage {
+  type: "error";
+  id: string;
+  error: string;
+  code?: number;
+}

@@ -90,3 +90,20 @@ export async function sendRequest(subPath: string, req: any, res: any, vm: Vm) {
     res.status(statusCode).json(msg.data ?? { error: msg.error });
   }
 }
+
+export async function sendMessage(
+  vm: Vm,
+  message: Record<string, any>,
+  onStreamChunk?: (chunk: any) => void,
+  timeout: number = 60000,
+): Promise<any> {
+  const socket = await getVmSocket(vm);
+  socket.write(JSON.stringify(message) + "\n");
+
+  transportLogger.debug(
+    { vmId: vm.id, messageType: message.type, messageId: message.id },
+    "message sent to VM"
+  );
+
+  return readVsockResponse(socket, timeout, onStreamChunk);
+}

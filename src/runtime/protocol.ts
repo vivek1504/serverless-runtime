@@ -17,6 +17,7 @@ export function buildPayload(req: any, subPath: string): string {
 export function readVsockResponse(
   socket: Socket,
   timeout: number,
+  onStreamChunk?: (chunk: any) => void
 ): Promise<{ type: string; data: any; error?: string }> {
   return new Promise((resolve, reject) => {
     let buffer = "";
@@ -41,6 +42,14 @@ export function readVsockResponse(
     onData = (chunk: Buffer) => {
       buffer += chunk.toString();
 
+      if (buffer.length > 10 * 1024 * 1024) {
+        clearTimeout(timer);
+        cleanup();
+        socket.destroy();
+        reject(new Error("Response too large"));
+        return;
+      }
+
       let index;
 
       while ((index = buffer.indexOf("\n")) >= 0) {
@@ -52,6 +61,11 @@ export function readVsockResponse(
 
         try {
           const msg = JSON.parse(line);
+
+          if (msg.type === "stream") {
+            onStreamChunk?.(msg);
+            continue;
+          }
 
           if (msg.type === "response" || msg.type === "error") {
             clearTimeout(timer);
