@@ -165,3 +165,44 @@ export const schedulerQueueWaitTime = new Histogram({
   buckets: [0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10],
   registers: [register],
 });
+
+export const execSessionsActive = new Gauge({
+  name: "exec_sessions_active",
+  help: "Active sessions",
+  registers: [register],
+});
+
+export const execSessionDurationSeconds = new Histogram({
+  name: "exec_session_duration_seconds",
+  help: "Session lifetime",
+  buckets: [1, 5, 30, 60, 300, 900, 1800, 3600],
+  registers: [register],
+});
+
+export const execMessageTotal = new Counter({
+  name: "exec_message_total",
+  help: "Messages by type + status",
+  labelNames: ["type", "status"],
+  registers: [register],
+});
+
+export const execMessageDurationSeconds = new Histogram({
+  name: "exec_message_duration_seconds",
+  help: "Message round-trip time",
+  labelNames: ["type"],
+  buckets: [0.01, 0.05, 0.1, 0.5, 1, 5, 10, 30, 60],
+  registers: [register],
+});
+
+export const execProcessExitCode = new Counter({
+  name: "exec_process_exit_code",
+  help: "Exit codes by command",
+  labelNames: ["command", "exit_code"],
+  registers: [register],
+});
+
+export const execWorkspaceBytesWritten = new Counter({
+  name: "exec_workspace_bytes_written",
+  help: "Bytes written to workspaces",
+  registers: [register],
+});

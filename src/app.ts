@@ -6,6 +6,9 @@ import { invokeRouter } from "./routes/invoke.js";
 import { httpLoggerOptions } from "./utils/logger.js";
 import { register, httpRequestDuration, httpRequestsTotal } from "./utils/metrics.js";
 import { deployQueue } from "./deploy/queue.js";
+import { execRouter } from "./routes/exec.js";
+import { mcpRouter } from "./mcp/routes.js";
+import { startSessionReaper } from "./exec/session.js";
 
 export const app = express();
 
@@ -37,6 +40,8 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use("/deploy", deployRouter);
 app.use("/f", invokeRouter);
+app.use("/exec", execRouter)
+app.use('/mcp', mcpRouter);
 
 app.get("/metrics", async (_req, res) => {
   res.set("Content-Type", register.contentType);
@@ -57,3 +62,5 @@ app.get("/ready", (_req, res) => {
     .status(healthy ? 200 : 503)
     .json({ status: healthy ? "ready" : "not_ready", checks });
 });
+
+startSessionReaper()
