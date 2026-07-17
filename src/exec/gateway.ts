@@ -3,6 +3,12 @@ import { readVsockResponse } from "../runtime/protocol.js";
 import { getVmSocket } from "../runtime/transport.js";
 import { getSession, createSession, touchSession } from "./session.js";
 import { gatewayLogger } from "../utils/logger.js";
+import { 
+  execMessageTotal, 
+  execMessageDurationSeconds, 
+  execProcessExitCode, 
+  execWorkspaceBytesWritten 
+} from "../utils/metrics.js";
 import crypto from "crypto";
 import type { Vm } from "../types/types.js";
 
@@ -61,6 +67,26 @@ export async function sendSessionMessage(
     "message sent to VM"
   );
 
-  const result = await readVsockResponse(socket, timeout, onStream);
-  return { ...result, messageId: id };
+  const startTime = process.hrtime.bigint();
+  let status = "success";
+  let result;
+
+  try {
+    result = await readVsockResponse(socket, timeout, onStream);
+    
+    if (message.type === "execute" && result.data?.exitCode !== undefined) {
+      execProcessExitCode.inc({ command: message.command, exit_code: result.data.exitCode.toString() });
+    } else if (message.type === "write_file" && result.data?.bytesWritten) {
+      execWorkspaceBytesWritten.inc(result.data.bytesWritten);
+    }
+
+    return { ...result, messageId: id };
+  } catch (err) {
+    status = "error";
+    throw err;
+  } finally {
+    const duration = Number(process.hrtime.bigint() - startTime) / 1_000_000_000;
+    execMessageDurationSeconds.observe({ type: message.type }, duration);
+    execMessageTotal.inc({ type: message.type, status });
+  }
 }

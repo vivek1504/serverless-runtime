@@ -1,6 +1,7 @@
 import { runtimeStore } from "../runtime/store.js";
 import { cleanupVm } from "../runtime/cleanup.js";
 import { sessionLogger } from "../utils/logger.js";
+import { execSessionsActive, execSessionDurationSeconds } from "../utils/metrics.js";
 
 export interface Session {
   sessionId: string;
@@ -23,6 +24,7 @@ export function createSession(sessionId: string): Session {
     state: "creating",
   };
   sessions.set(sessionId, session);
+  execSessionsActive.inc();
   return session;
 }
 
@@ -46,6 +48,8 @@ export async function destroySession(sessionId: string): Promise<boolean> {
   }
 
   sessions.delete(sessionId);
+  execSessionsActive.dec();
+  execSessionDurationSeconds.observe((Date.now() - session.createdAt) / 1000);
   sessionLogger.info({ sessionId }, "session destroyed");
   return true;
 }
